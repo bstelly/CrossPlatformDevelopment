@@ -20,7 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
 	    renderer = GetComponent<SpriteRenderer>();
 	}
 
-	void FixedUpdate ()
+	void Update ()
     {
 
 	    GetInput();
@@ -52,8 +52,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (canJump)
             {
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1), ForceMode2D.Force);
-                //transform.position += Vector3.up * jumpModifier;
+                transform.position += Vector3.up * jumpModifier;
             }
         }
 
