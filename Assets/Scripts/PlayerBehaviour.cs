@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-
+    public PlayerInventory inventory;
     private bool canJump = true;
     private float jumpModifier = 1;
     public bool gameWon;

@@ -23,11 +23,11 @@ public class ItemBehaviour : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("collided");
         if (other.CompareTag("Player"))
         {
-            //var goblin = GetComponent<GoblinBehaviour>();
-            //goblin.LootTable.Add(item);
-
+            var player = other.GetComponent<PlayerBehaviour>();
+            player.inventory.items.Add(item);
         }
     }
 

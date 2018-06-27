@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78094e7abdae454fba62ea64bcc120a, type: 3}
   m_Name: OrbPurple
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 9e4c850bd707884478f617db11bb5873, type: 3}

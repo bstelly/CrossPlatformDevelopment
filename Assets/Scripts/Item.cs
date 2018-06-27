@@ -6,9 +6,4 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public Sprite image;
-
-    public virtual void Use()
-    {
-
-    }
 }
