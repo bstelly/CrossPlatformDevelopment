@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PlayerInventory")]
-public class PlayerInventory : ScriptableObject
+[CreateAssetMenu(menuName = "Inventory")]
+public class Inventory : ScriptableObject
 {
     [SerializeField]
     public List<Item> items;

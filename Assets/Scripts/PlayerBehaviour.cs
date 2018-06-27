@@ -8,8 +8,9 @@ using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public PlayerInventory inventory;
+    public Inventory inventory;
     private bool canJump = true;
+    private bool discardKeyDown = false;
     private float jumpModifier = 1;
     public bool gameWon;
     public int score;
@@ -28,6 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (transform.position.y <= -100)
         {
             transform.position = new Vector3(-10, -19.77f, 0);
+            score -= 100;
             Debug.Log("Game Over");
         }
 	}
@@ -60,6 +62,30 @@ public class PlayerBehaviour : MonoBehaviour
         {
             canJump = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !discardKeyDown)
+        {
+            discardKeyDown = true;
+            if(inventory.items.Count >= 1)
+            inventory.Remove(inventory.items[0]);
+        }
+        if (Input.GetKey(KeyCode.Alpha2) && !discardKeyDown)
+        {
+            discardKeyDown = true;
+            if (inventory.items.Count >= 2)
+                inventory.Remove(inventory.items[1]);
+        }
+        if (Input.GetKey(KeyCode.Alpha3) && !discardKeyDown)
+        {
+            discardKeyDown = true;
+            if (inventory.items.Count >= 3)
+                inventory.Remove(inventory.items[2]);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            discardKeyDown = false;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -70,9 +96,12 @@ public class PlayerBehaviour : MonoBehaviour
         GameObject boosts = GameObject.Find("JumpBoosts");
 
 
-        if (col.gameObject.name == "WinArea")
+        if (col.gameObject.name == "WinArea" && !gameWon)
         {
             gameWon = true;
+            var count = inventory.items.Count;
+            count *= 5000;
+            score += count;
         }
 
         for (int i = 0; i < world.transform.childCount; i++)

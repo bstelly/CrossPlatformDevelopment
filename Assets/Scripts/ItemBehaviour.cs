@@ -7,6 +7,7 @@ public class ItemBehaviour : MonoBehaviour
 
     public Item item;
     public SpriteRenderer sr;
+    private bool isColliding = false;
 
     // Use this for initialization
     void Start()
@@ -21,13 +22,20 @@ public class ItemBehaviour : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
+        if (isColliding)
+        {
+            return;
+        }
+
+        isColliding = true;
         Debug.Log("collided");
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<PlayerBehaviour>();
             player.inventory.items.Add(item);
+            Destroy(gameObject);
         }
     }
 

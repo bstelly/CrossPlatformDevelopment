@@ -18,8 +18,5 @@ public class ScoreManagerBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 	    scoreText.text = "Score: " + player.score;
-	    if (player.gameWon)
-	    {
-        }
-    }
+	}
 }
