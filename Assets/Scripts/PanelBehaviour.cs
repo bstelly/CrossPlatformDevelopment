@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PanelBehaviour : MonoBehaviour {
 
-    private PlayerBehaviour player;
+    public PlayerBehaviour player;
     public Image imageBox1;
     public Image imageBox2;
     public Image imageBox3;

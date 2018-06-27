@@ -3829,7 +3829,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 457962059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 199.6, y: 429.6, z: 0}
+  m_LocalPosition: {x: 74.2, y: 2.8, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10597,6 +10597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0cca339fd45da429648a6b3fbc609e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   imageBox1: {fileID: 716075214}
   imageBox2: {fileID: 1396958097}
   imageBox3: {fileID: 1290157694}
@@ -11633,7 +11634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 97271246cf23d9d438ca46e53b6390ab, type: 2}
-  gameWon: 0
+  jumpModifier: 1
   score: 0
 --- !u!212 &1399852664
 SpriteRenderer:
@@ -13664,7 +13665,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1719554783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2849.3, y: 433.8, z: 0}
+  m_LocalPosition: {x: 37, y: 4, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -14662,7 +14663,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1806620625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -123.1, y: -7.8, z: 0}
+  m_LocalPosition: {x: 11, y: 3.3, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

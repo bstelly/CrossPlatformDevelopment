@@ -1,18 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 using UnityEngine.Advertisements;
 using UnityEngine.EventSystems;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
 
+[Serializable]
 public class PlayerBehaviour : MonoBehaviour
 {
     public Inventory inventory;
-    private bool canJump = true;
-    private bool discardKeyDown = false;
-    private float jumpModifier = 1;
-    public bool gameWon;
+    public static bool CanJump { get; set; }
+    public static bool DiscardKeyDown { get; set; }
+    public float jumpModifier = 1;
+    public static bool GameWon { get; set; }
     public int score;
     private SpriteRenderer renderer;
 
@@ -52,7 +55,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (Input.GetButton("Jump"))
         {
-            if (canJump)
+            if (CanJump)
             {
                 transform.position += Vector3.up * jumpModifier;
             }
@@ -60,31 +63,41 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (Input.GetButtonUp("Jump"))
         {
-            canJump = false;
+            CanJump = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !discardKeyDown)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !DiscardKeyDown)
         {
-            discardKeyDown = true;
+            DiscardKeyDown = true;
             if(inventory.items.Count >= 1)
             inventory.Remove(inventory.items[0]);
         }
-        if (Input.GetKey(KeyCode.Alpha2) && !discardKeyDown)
+        if (Input.GetKey(KeyCode.Alpha2) && !DiscardKeyDown)
         {
-            discardKeyDown = true;
+            DiscardKeyDown = true;
             if (inventory.items.Count >= 2)
                 inventory.Remove(inventory.items[1]);
         }
-        if (Input.GetKey(KeyCode.Alpha3) && !discardKeyDown)
+        if (Input.GetKey(KeyCode.Alpha3) && !DiscardKeyDown)
         {
-            discardKeyDown = true;
+            DiscardKeyDown = true;
             if (inventory.items.Count >= 3)
                 inventory.Remove(inventory.items[2]);
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Alpha3))
         {
-            discardKeyDown = false;
+            DiscardKeyDown = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Save();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            Load();
         }
     }
 
@@ -96,9 +109,9 @@ public class PlayerBehaviour : MonoBehaviour
         GameObject boosts = GameObject.Find("JumpBoosts");
 
 
-        if (col.gameObject.name == "WinArea" && !gameWon)
+        if (col.gameObject.name == "WinArea" && !GameWon)
         {
-            gameWon = true;
+            GameWon = true;
             var count = inventory.items.Count;
             count *= 5000;
             score += count;
@@ -108,7 +121,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (col.gameObject.name == world.transform.GetChild(i).name)
             {
-                canJump = true;
+                CanJump = true;
             }
         }
 
@@ -139,5 +152,20 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
 
+    }
+
+    void Save()
+    {
+
+        var toJson = JsonUtility.ToJson(this, true);
+        string directory = Application.persistentDataPath;
+        File.WriteAllText(directory + @"\save.json", toJson);
+    }
+
+    void Load()
+    {
+        var fromJson = File.ReadAllText(Application.persistentDataPath + @"\save.json");
+        var player = JsonUtility.FromJson<PlayerBehaviour>(fromJson);
+        inventory = player.inventory;
     }
 }

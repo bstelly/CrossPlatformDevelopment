@@ -1,13 +1,17 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inventory")]
+[Serializable]
 public class Inventory : ScriptableObject
 {
-    [SerializeField]
-    public List<Item> items;
+    [SerializeField] public List<Item> items;
 
+    [TextArea]
+    [SerializeField]
+    string json;
 
     public void Add(Item item)
     {
@@ -17,5 +21,15 @@ public class Inventory : ScriptableObject
     public void Remove(Item item)
     {
         items.Remove(item);
+    }
+
+    public void Serialize()
+    {
+        json = JsonUtility.ToJson(this, true);
+    }
+
+    public void Deserialize(string json)
+    {
+        
     }
 }
