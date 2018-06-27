@@ -34,7 +34,7 @@ public class ItemBehaviour : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<PlayerBehaviour>();
-            player.inventory.items.Add(item);
+            player.inventory.Add(item);
             Destroy(gameObject);
         }
     }
