@@ -30,6 +30,7 @@ public class Inventory : ScriptableObject
 
     public void Deserialize(string json)
     {
-        
+        Inventory newInventory = JsonUtility.FromJson<Inventory>(json);
+        items = newInventory.items;
     }
 }
