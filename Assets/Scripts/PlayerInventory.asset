@@ -13,4 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: 74d8974c842edf94db6ef0e5cd9b65f7, type: 2}
-  json: 
+  - {fileID: 11400000, guid: 80f2e2b439b52a54489afa0de9d254be, type: 2}
+  - {fileID: 11400000, guid: ee4543f4e9453864da59e71324a62a12, type: 2}
+  json: "{\n    \"items\": [\n        {\n            \"instanceID\": 10868\n        },\n
+    \       {\n            \"instanceID\": 10306\n        },\n        {\n            \"instanceID\":
+    10316\n        }\n    ],\n    \"json\": \"{\\n    \\\"items\\\": [\\n        {\\n
+    \           \\\"instanceID\\\": 10868\\n        }\\n    ],\\n    \\\"json\\\":
+    \\\"{\\\\n    \\\\\\\"items\\\\\\\": [\\\\n        {\\\\n            \\\\\\\"instanceID\\\\\\\":
+    10868\\\\n        }\\\\n    ],\\\\n    \\\\\\\"json\\\\\\\": \\\\\\\"{\\\\\\\\n
+    \   \\\\\\\\\\\\\\\"items\\\\\\\\\\\\\\\": [\\\\\\\\n        {\\\\\\\\n            \\\\\\\\\\\\\\\"instanceID\\\\\\\\\\\\\\\":
+    10868\\\\\\\\n        }\\\\\\\\n    ],\\\\\\\\n    \\\\\\\\\\\\\\\"json\\\\\\\\\\\\\\\":
+    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n}\\\\\\\"\\\\n}\\\"\\n}\"\n}"
