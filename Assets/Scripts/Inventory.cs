@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -26,6 +27,9 @@ public class Inventory : ScriptableObject
     public void Serialize()
     {
         json = JsonUtility.ToJson(this, true);
+        string directory = Application.persistentDataPath;
+        File.WriteAllText(directory + @"\save.json", json);
+        Debug.Log(directory);
     }
 
     public void Deserialize(string json)

@@ -18,8 +18,9 @@ public class PlayerBehaviour : MonoBehaviour
     public static bool GameWon { get; set; }
     public int score;
     private SpriteRenderer renderer;
+    private Vector2 touchOrigin = -Vector2.one;
 
-	void Start ()
+    void Start ()
 	{
 	    renderer = GetComponent<SpriteRenderer>();
 	}
@@ -41,6 +42,35 @@ public class PlayerBehaviour : MonoBehaviour
 
     void GetInput()
     {
+        //DETECTING TAPS FOR TOUCH CONTROLS
+
+        //int horizontal = 0;
+        //int vertical = 0;
+        //if (Input.touchCount > 0)
+        //{
+        //    Touch touchOne = Input.touches[0];
+        //    if (touchOne.phase == TouchPhase.Began)
+        //    {
+        //        touchOrigin = touchOne.position;
+        //    }
+        //    else if (touchOne.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+        //    {
+        //        Vector2 touchEnd = touchOne.position;
+        //        float x = touchEnd.x - touchOrigin.x;
+        //        float y = touchEnd.y - touchOrigin.y;
+        //        touchOrigin.x = -1;
+
+        //        if (Mathf.Abs(x) > Mathf.Abs(y))
+        //        {
+        //            horizontal = x > 0 ? 1 : -1;
+        //        }
+        //        else
+        //        {
+        //            vertical = y > 0 ? 1 : -1;
+        //        }
+        //    }
+        //}
+
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left;
@@ -90,14 +120,15 @@ public class PlayerBehaviour : MonoBehaviour
             DiscardKeyDown = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            Save();
+            inventory.Serialize();
         }
 
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            Load();
+            string directory = Application.persistentDataPath + @"\save.json";
+            inventory.Deserialize(directory);
         }
     }
 
@@ -152,20 +183,5 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
 
-    }
-
-    void Save()
-    {
-
-        var toJson = JsonUtility.ToJson(this, true);
-        string directory = Application.persistentDataPath;
-        File.WriteAllText(directory + @"\save.json", toJson);
-    }
-
-    void Load()
-    {
-        var fromJson = File.ReadAllText(Application.persistentDataPath + @"\save.json");
-        var player = JsonUtility.FromJson<PlayerBehaviour>(fromJson);
-        inventory = player.inventory;
     }
 }
