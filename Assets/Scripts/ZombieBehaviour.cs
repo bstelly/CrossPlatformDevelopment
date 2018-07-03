@@ -9,14 +9,12 @@ public class ZombieBehaviour : MonoBehaviour
     public float timer;
     private SpriteRenderer renderer;
 
-	// Use this for initialization
 	void Start ()
 	{
 	    timer = 0;
 	    renderer = GetComponent<SpriteRenderer>();
 	}
 
-	// Update is called once per frame
 	void Update ()
 	{
 	    timer += Time.deltaTime;

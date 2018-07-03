@@ -15,17 +15,19 @@ public class PlayerBehaviour : MonoBehaviour
     public static bool CanJump { get; set; }
     public static bool DiscardKeyDown { get; set; }
     public float jumpModifier = 1;
-    public static bool GameWon { get; set; }
+    //public static bool GameWon { get; set; }
     public int score;
     private SpriteRenderer renderer;
-    private Vector2 touchOrigin = -Vector2.one;
+    //private Vector2 touchOrigin = -Vector2.one;
+
 
     void Start ()
 	{
 	    renderer = GetComponent<SpriteRenderer>();
 	}
 
-	void Update ()
+
+    void Update ()
     {
 
 	    GetInput();
@@ -37,7 +39,6 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.Log("Game Over");
         }
 	}
-
 
 
     void GetInput()
@@ -132,21 +133,22 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+
     void OnCollisionEnter2D(Collision2D col)
     {
         GameObject world = GameObject.Find("World");
         GameObject coins = GameObject.Find("Coins");
-        GameObject enemies = GameObject.Find("Enemies");
-        GameObject boosts = GameObject.Find("JumpBoosts");
+        //GameObject enemies = GameObject.Find("Enemies");
+        //GameObject boosts = GameObject.Find("JumpBoosts");
 
 
-        if (col.gameObject.name == "WinArea" && !GameWon)
-        {
-            GameWon = true;
-            var count = inventory.items.Count;
-            count *= 5000;
-            score += count;
-        }
+        //if (col.gameObject.name == "WinArea" && !GameWon)
+        //{
+        //    GameWon = true;
+        //    var count = inventory.items.Count;
+        //    count *= 5000;
+        //    score += count;
+        //}
 
         for (int i = 0; i < world.transform.childCount; i++)
         {
@@ -165,23 +167,23 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < enemies.transform.childCount; i++)
-        {
-            if (col.gameObject.name == enemies.transform.GetChild(i).name)
-            {
-                transform.position = new Vector3(-10, -19.77f, 0);
-                score -= 100;
-            }
-        }
+        //for (int i = 0; i < enemies.transform.childCount; i++)
+        //{
+        //    if (col.gameObject.name == enemies.transform.GetChild(i).name)
+        //    {
+        //        transform.position = new Vector3(-10, -19.77f, 0);
+        //        score -= 100;
+        //    }
+        //}
 
-        for (int i = 0; i < boosts.transform.childCount; i++)
-        {
-            if (col.gameObject.name == boosts.transform.GetChild(i).name)
-            {
-                Destroy(boosts.transform.GetChild(i).gameObject);
-                jumpModifier += .5f;
-            }
-        }
+        //for (int i = 0; i < boosts.transform.childCount; i++)
+        //{
+        //    if (col.gameObject.name == boosts.transform.GetChild(i).name)
+        //    {
+        //        Destroy(boosts.transform.GetChild(i).gameObject);
+        //        jumpModifier += .5f;
+        //    }
+        //}
 
     }
 }
