@@ -20,18 +20,14 @@ public class PlayerBehaviour : MonoBehaviour
     private SpriteRenderer renderer;
     //private Vector2 touchOrigin = -Vector2.one;
 
-
     void Start ()
 	{
 	    renderer = GetComponent<SpriteRenderer>();
 	}
 
-
     void Update ()
     {
-
 	    GetInput();
-
         if (transform.position.y <= -100)
         {
             transform.position = new Vector3(-10, -19.77f, 0);

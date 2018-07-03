@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 457962060}
   - component: {fileID: 457962063}
   m_Layer: 0
-  m_Name: orb7
+  m_Name: orbPurple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6d0e39872a5a44cb66f1c62f205645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 74d8974c842edf94db6ef0e5cd9b65f7, type: 2}
+  item: {fileID: 11400000, guid: cc00d72cc357249478da259d1e0a4e18, type: 2}
   sr: {fileID: 0}
 --- !u!212 &457962061
 SpriteRenderer:
@@ -1716,7 +1716,7 @@ GameObject:
   - component: {fileID: 1719554786}
   - component: {fileID: 1719554787}
   m_Layer: 0
-  m_Name: orb6
+  m_Name: orbAqua
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6d0e39872a5a44cb66f1c62f205645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 80f2e2b439b52a54489afa0de9d254be, type: 2}
+  item: {fileID: 11400000, guid: 85d824cac853c014cb3f4f263caec89f, type: 2}
   sr: {fileID: 0}
 --- !u!61 &1719554787
 BoxCollider2D:
@@ -2002,7 +2002,7 @@ GameObject:
   - component: {fileID: 1806620628}
   - component: {fileID: 1806620629}
   m_Layer: 0
-  m_Name: orb1
+  m_Name: orbRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2076,7 +2076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6d0e39872a5a44cb66f1c62f205645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: ee4543f4e9453864da59e71324a62a12, type: 2}
+  item: {fileID: 11400000, guid: df99f289365e5244bb24521c6973753c, type: 2}
   sr: {fileID: 0}
 --- !u!61 &1806620629
 BoxCollider2D:

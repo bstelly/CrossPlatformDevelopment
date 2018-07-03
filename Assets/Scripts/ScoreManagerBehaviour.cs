@@ -14,7 +14,6 @@ public class ScoreManagerBehaviour : MonoBehaviour
 	    player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
 	}
 
-
     void Update () {
 	    scoreText.text = "Score: " + player.score;
 	}

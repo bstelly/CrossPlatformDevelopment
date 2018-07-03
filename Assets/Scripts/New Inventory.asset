@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: New Inventory
   m_EditorClassIdentifier: 
   items: []
+  save:
+    items: []
   json: "{\n    \"items\": [\n        {\n            \"instanceID\": 10358\n        },\n
     \       {\n            \"instanceID\": 10916\n        }\n    ],\n    \"json\":
     \"\"\n}"
