@@ -9,15 +9,11 @@ public class ItemBehaviour : MonoBehaviour
     public SpriteRenderer sr;
     private bool isColliding = false;
 
-
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = item.image;
     }
-
-
-
 
     void OnTriggerEnter2D(Collider2D other)
     {

@@ -13,9 +13,7 @@ public class Inventory : ScriptableObject
 
     [TextArea]
     [SerializeField]
-    //string json;
-
-    InventoryTemp temp = new InventoryTemp();
+    string json;
 
     public void Add(Item item)
     {
@@ -40,11 +38,8 @@ public class Inventory : ScriptableObject
     public void Deserialize(string json)
     {
         Debug.Log("Beginning Deserialization");
-        //var newInventory = CreateInstance<Inventory>();
-        JsonUtility.FromJsonOverwrite(json, temp);
-        Debug.Log("Deserialized save into temporary variable");
-        Debug.Log("Capacity" + temp.items.Capacity);
-        Debug.Log(temp.itemTemps[0].instanceID);
-        //items = newInventory.items;
+        var newInventory = CreateInstance<Inventory>();
+        JsonUtility.FromJsonOverwrite(json, newInventory);
+        items = newInventory.items;
     }
 }

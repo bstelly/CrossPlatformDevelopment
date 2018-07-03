@@ -12,13 +12,11 @@ public class PanelBehaviour : MonoBehaviour {
     public Image imageBox3;
     private List<Image> images;
 
-   
     void Start()
     {
         images = new List<Image>{imageBox1, imageBox2, imageBox3};
         player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
     }
-
 
     void Update () {
 	    var count = player.inventory.items.Count;
