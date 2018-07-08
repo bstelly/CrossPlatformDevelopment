@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [Serializable]
 public class PlayerSave
@@ -12,13 +13,15 @@ public class PlayerSave
 [Serializable]
 public class InventoryItem
 {
-    public string name;
-    public string imagePath;
+    public string itemName;
+    public string spriteName;
 
-    public InventoryItem(string n, string path)
+    public InventoryItem(string n, string name)
     {
-        name = n;
-        imagePath = path;
+        itemName = n;
+        spriteName = name;
     }
 }
 
+//Create an inventory for world and check if world inventory contains item.
+//if so remove item from world and put in player inventory

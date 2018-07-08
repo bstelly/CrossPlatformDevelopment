@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inventory")]
@@ -9,7 +10,7 @@ using UnityEngine;
 public class Inventory : ScriptableObject
 {
     [SerializeField]
-    public List<Item> items;
+    public List<ItemBehaviour> items;
 
     public PlayerSave save = new PlayerSave();
 
@@ -17,13 +18,13 @@ public class Inventory : ScriptableObject
     [SerializeField]
     string json;
 
-    public void Add(Item item)
+    public void Add(ItemBehaviour item)
     {
         items.Add(item);
     }
 
 
-    public void Remove(Item item)
+    public void Remove(ItemBehaviour item)
     {
         items.Remove(item);
     }
@@ -37,10 +38,11 @@ public class Inventory : ScriptableObject
         {
             save.items.Clear();
         }
+
         //Add all inventory variables to player save variables, then serialize player save
         foreach (var x in items)
         {
-            save.items.Add(new InventoryItem(x.name, x.imagePath));
+            save.items.Add(new InventoryItem(x.name, x.image.name));
         }
         string json = JsonUtility.ToJson(save, true);
         string directory = Application.persistentDataPath;
@@ -52,8 +54,18 @@ public class Inventory : ScriptableObject
     {
         //Deserialize player save and then replace inventory data with playersave data
         Debug.Log("Beginning Deserialization");
-        var newInventory = CreateInstance<Inventory>();
+        var newInventory = new PlayerSave();
         JsonUtility.FromJsonOverwrite(json, newInventory);
-        items = newInventory.items;
+        foreach (var item in newInventory.items)
+        {
+            Sprite newSprite = Resources.Load<Sprite>(@"Sprites\" + item.spriteName);
+            Debug.Log("Sprite: " + newSprite.name);
+
+            var temp = new ItemBehaviour();
+            temp.image = newSprite;
+            temp.name = item.itemName;
+            items.Add(temp);
+        }
+
     }
 }

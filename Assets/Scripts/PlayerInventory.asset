@@ -11,19 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af80b95f07c90bd4b97b85a4504dc4f5, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: df99f289365e5244bb24521c6973753c, type: 2}
-  - {fileID: 11400000, guid: cc00d72cc357249478da259d1e0a4e18, type: 2}
-  - {fileID: 11400000, guid: 85d824cac853c014cb3f4f263caec89f, type: 2}
+  items: []
   save:
     items:
-    - name: Red Orb
-      image: {fileID: 0}
-      imagePath: Assets/Resources/Sprites/orb1.png
-    - name: Purple Orb
-      image: {fileID: 0}
-      imagePath: Assets/Resources/Sprites/orb7.png
-    - name: Aqua Orb
-      image: {fileID: 0}
-      imagePath: Assets/Resources/Sprites/orb6.png
+    - itemName: Red Orb
+      spriteName: orb1
+    - itemName: Purple Orb
+      spriteName: orb7
+    - itemName: Aqua Orb
+      spriteName: orb6
   json: 

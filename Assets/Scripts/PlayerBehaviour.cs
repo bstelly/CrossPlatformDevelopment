@@ -67,7 +67,6 @@ public class PlayerBehaviour : MonoBehaviour
         //        }
         //    }
         //}
-
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left;
@@ -124,8 +123,9 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            string directory = Application.persistentDataPath + @"\save.json";
-            inventory.Deserialize(directory);
+            string directory = Application.persistentDataPath + "/save.json";
+            string json = File.ReadAllText(directory);
+            inventory.Deserialize(json);
         }
     }
 
