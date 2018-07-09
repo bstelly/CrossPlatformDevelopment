@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//[CreateAssetMenu(menuName = "Item")]
-public class Item/* : ScriptableObject*/
+
+public class Item
 {
     public string name;
     public string imagePath;
 }
-
-//public class Item
-//{
-//    public Sprite image;
-//}

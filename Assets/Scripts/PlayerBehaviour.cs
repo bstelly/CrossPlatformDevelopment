@@ -40,9 +40,6 @@ public class PlayerBehaviour : MonoBehaviour
         }
 	}
 
-
-
-
     void GetInput()
     {
         //DETECTING TAPS FOR TOUCH CONTROLS
@@ -177,19 +174,19 @@ public class PlayerBehaviour : MonoBehaviour
         {
             DiscardKeyDown = true;
             if(inventory.items.Count >= 1)
-            inventory.Remove(inventory.items[0]);
+            inventory.Remove(0);
         }
         if (Input.GetKey(KeyCode.Alpha2) && !DiscardKeyDown)
         {
             DiscardKeyDown = true;
             if (inventory.items.Count >= 2)
-                inventory.Remove(inventory.items[1]);
+                inventory.Remove(1);
         }
         if (Input.GetKey(KeyCode.Alpha3) && !DiscardKeyDown)
         {
             DiscardKeyDown = true;
             if (inventory.items.Count >= 3)
-                inventory.Remove(inventory.items[2]);
+                inventory.Remove(2);
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Alpha3))
@@ -202,7 +199,7 @@ public class PlayerBehaviour : MonoBehaviour
             inventory.Serialize();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift))
         {
             string directory = Application.persistentDataPath + "/save.json";
             string json = File.ReadAllText(directory);

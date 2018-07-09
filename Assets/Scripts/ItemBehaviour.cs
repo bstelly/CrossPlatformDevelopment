@@ -1,29 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ItemBehaviour : MonoBehaviour
 {
+    public Sprite image;
+    private bool isColliding;
 
     public string name;
     public SpriteRenderer sr;
-    public Sprite image;
-    private bool isColliding = false;
-    void Start()
+
+    private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         image = sr.sprite;
-        //item.imagePath = AssetDatabase.GetAssetPath(sr.sprite);
-        //Debug.Log("Asset path " + item.imagePath);
     }
-    
-    void OnTriggerEnter2D(Collider2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isColliding)
-        {
-            return;
-        }
+        if (isColliding) return;
 
         isColliding = true;
         Debug.Log("collided");

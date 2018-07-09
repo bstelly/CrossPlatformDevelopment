@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using JetBrains.Annotations;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inventory")]
@@ -24,9 +22,9 @@ public class Inventory : ScriptableObject
     }
 
 
-    public void Remove(ItemBehaviour item)
+    public void Remove(int index)
     {
-        items.Remove(item);
+        items.Remove(items[index]);
     }
 
 
@@ -52,6 +50,7 @@ public class Inventory : ScriptableObject
 
     public void Deserialize(string json)
     {
+        items.Clear();
         //Deserialize player save and then replace inventory data with playersave data
         Debug.Log("Beginning Deserialization");
         var newInventory = new PlayerSave();
@@ -59,8 +58,6 @@ public class Inventory : ScriptableObject
         foreach (var item in newInventory.items)
         {
             Sprite newSprite = Resources.Load<Sprite>(@"Sprites\" + item.spriteName);
-            Debug.Log("Sprite: " + newSprite.name);
-
             var temp = new ItemBehaviour();
             temp.image = newSprite;
             temp.name = item.itemName;

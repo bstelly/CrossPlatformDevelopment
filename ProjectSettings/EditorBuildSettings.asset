@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 862254375bf791345a660d0a88655ef3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Backpack.unity
     guid: e17178086b188c94e987c590499dadf2
+  - enabled: 1
+    path: Assets/Scenes/BackpackAndroid.unity
+    guid: 285f7e76a4404184095150ffb376dbd3
