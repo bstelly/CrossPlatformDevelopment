@@ -7,6 +7,8 @@ using UnityEngine.Advertisements;
 using UnityEngine.EventSystems;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
+using Button = UnityEngine.Experimental.UIElements.Button;
+using Image = UnityEngine.Experimental.UIElements.Image;
 
 [Serializable]
 public class PlayerBehaviour : MonoBehaviour
@@ -18,11 +20,13 @@ public class PlayerBehaviour : MonoBehaviour
     //public static bool GameWon { get; set; }
     public int score;
     private SpriteRenderer renderer;
-    //private Vector2 touchOrigin = -Vector2.one;
+    private Vector2 touchOrigin = -Vector2.one;
+
 
     void Start ()
 	{
 	    renderer = GetComponent<SpriteRenderer>();
+	    CanJump = true;
 	}
 
     void Update ()
@@ -37,12 +41,86 @@ public class PlayerBehaviour : MonoBehaviour
 	}
 
 
+
+
     void GetInput()
     {
         //DETECTING TAPS FOR TOUCH CONTROLS
+#if UNITY_ANDROID
+        Vector2 startPos = new Vector2();
+        Vector2 movePos = new Vector2();
+        Vector2 endPos = new Vector2();
 
-        //int horizontal = 0;
-        //int vertical = 0;
+        if (Input.touches.Length == 3)
+        {
+            inventory.Serialize();
+        }
+
+        if (Input.touches.Length == 4)
+        {
+            string directory = Application.persistentDataPath + "/save.json";
+            string json = File.ReadAllText(directory);
+            inventory.Deserialize(json);
+        }
+
+        if (Input.touches.Length > 0 && Input.touches.Length <= 2)
+        {
+            Touch[] myTouches = Input.touches;
+            foreach (var touch in myTouches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    startPos = touch.position;
+                }
+
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    movePos = touch.deltaPosition;
+                    //if (movePos.x > startPos.x)
+                    //{
+                    //    transform.position += Vector3.right;
+                    //    renderer.flipX = false;
+                    //}
+                    //if (movePos.x < startPos.x)
+                    //{
+                    //    transform.position += Vector3.left;
+                    //    renderer.flipX = true;
+                    //}
+                }
+                if (movePos.x > startPos.x)
+                {
+                    transform.position += Vector3.right;
+                    renderer.flipX = false;
+                }
+                else if (movePos.x < startPos.x)
+                {
+                    transform.position += Vector3.left;
+                    renderer.flipX = true;
+                }
+
+                //if (startPos.x == currentPos.x)
+                //{
+                //    if (CanJump)
+                //    {
+                //        transform.position += Vector3.up * jumpModifier;
+                //    }
+                //}
+                else if (Input.GetMouseButton(0))
+                {
+                    transform.position += Vector3.up * jumpModifier;
+                }
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    endPos = touch.position;
+                }
+            }
+        }
+        else
+        {
+            CanJump = false;
+        }
+
         //if (Input.touchCount > 0)
         //{
         //    Touch touchOne = Input.touches[0];
@@ -50,23 +128,26 @@ public class PlayerBehaviour : MonoBehaviour
         //    {
         //        touchOrigin = touchOne.position;
         //    }
-        //    else if (touchOne.phase == TouchPhase.Ended && touchOrigin.x >= 0)
-        //    {
-        //        Vector2 touchEnd = touchOne.position;
-        //        float x = touchEnd.x - touchOrigin.x;
-        //        float y = touchEnd.y - touchOrigin.y;
-        //        touchOrigin.x = -1;
+        //else if (touchOne.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+        //{
+        //    Vector2 touchEnd = touchOne.position;
+        //    float x = touchEnd.x - touchOrigin.x;
+        //    float y = touchEnd.y - touchOrigin.y;
+        //    touchOrigin.x = -1;
 
-        //        if (Mathf.Abs(x) > Mathf.Abs(y))
-        //        {
-        //            horizontal = x > 0 ? 1 : -1;
-        //        }
-        //        else
-        //        {
-        //            vertical = y > 0 ? 1 : -1;
-        //        }
+        //    if (Mathf.Abs(x) > Mathf.Abs(y))
+        //    {
+        //        horizontal = x > 0 ? 1 : -1;
+        //    }
+        //    else
+        //    {
+        //        vertical = y > 0 ? 1 : -1;
         //    }
         //}
+    }
+#endif
+
+#if UNITY_STANDALONE
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left;
@@ -128,7 +209,7 @@ public class PlayerBehaviour : MonoBehaviour
             inventory.Deserialize(json);
         }
     }
-
+#endif
 
     void OnCollisionEnter2D(Collision2D col)
     {
